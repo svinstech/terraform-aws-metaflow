@@ -37,4 +37,16 @@ locals {
     module.metaflow-common.default_metadata_service_container_image :
     var.ui_backend_container_image
   )
+
+  authenticate_cognito = var.authenticate_with_cognito ? [
+    {
+      type             = "authenticate-cognito"
+      target_group_arn = null
+      authenticate_cognito = {
+        user_pool_arn       = var.cognito.user_pool_arn
+        user_pool_client_id = var.cognito.user_pool_client_id
+        user_pool_domain    = var.cognito.user_pool_domain
+      }
+    }
+  ] : []
 }

@@ -176,3 +176,19 @@ variable "force_destroy_s3_bucket" {
   description = "Empty S3 bucket before destroying via terraform destroy"
   default     = false
 }
+
+variable "authenticate_with_cognito" {
+  type        = bool
+  description = "Enable Cognito authentication for the UI ALB"
+  default     = false
+}
+
+variable "cognito" {
+  type        = map(string)
+  description = "Cognito configuration"
+  default = {
+    user_pool_arn       = ""
+    user_pool_client_id = ""
+    user_pool_domain    = ""
+  }
+}

@@ -126,3 +126,19 @@ variable "alb_internal" {
   description = "Defines whether the ALB is internal"
   default     = false
 }
+
+variable "authenticate_with_cognito" {
+  type        = bool
+  description = "Enable ALB Cognito authentication"
+  default     = false
+}
+
+variable "cognito" {
+  type        = map(string)
+  description = "Cognito configuration"
+  default = {
+    user_pool_arn       = ""
+    user_pool_client_id = ""
+    user_pool_domain    = ""
+  }
+}
