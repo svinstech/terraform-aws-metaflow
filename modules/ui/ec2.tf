@@ -121,13 +121,19 @@ resource "aws_lb_listener" "this" {
   certificate_arn = var.certificate_arn
 
   dynamic "default_action" {
-    for_each = local.authenticate_cognito
+    for_each = local.default_actions
+
     content {
-      type = "authenticate-cognito"
-      authenticate_cognito {
-        user_pool_arn       = lookup(authenticate_cognito.value, "user_pool_arn", null)
-        user_pool_client_id = lookup(authenticate_cognito.value, "user_pool_client_id", null)
-        user_pool_domain    = lookup(authenticate_cognito.value, "user_pool_domain", null)
+      type = lookup(default_action.value, "type", null)
+
+      dynamic "authenticate_cognito" {
+        for_each = length(keys(lookup(default_action.value, "authenticate_cognito", {}))) > 0 ? [lookup(default_action.value, "authenticate_cognito", {})] : []
+
+        content {
+          user_pool_arn       = lookup(authenticate_cognito.value, "user_pool_arn", null)
+          user_pool_client_id = lookup(authenticate_cognito.value, "user_pool_client_id", null)
+          user_pool_domain    = lookup(authenticate_cognito.value, "user_pool_domain", null)
+        }
       }
     }
   }
@@ -135,7 +141,6 @@ resource "aws_lb_listener" "this" {
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.ui_static.id
-    order            = 100
   }
 }
 
@@ -144,13 +149,19 @@ resource "aws_lb_listener_rule" "ui_backend" {
   priority     = 1
 
   dynamic "action" {
-    for_each = local.authenticate_cognito
+    for_each = local.default_actions
+
     content {
-      type = "authenticate-cognito"
-      authenticate_cognito {
-        user_pool_arn       = lookup(authenticate_cognito.value, "user_pool_arn", null)
-        user_pool_client_id = lookup(authenticate_cognito.value, "user_pool_client_id", null)
-        user_pool_domain    = lookup(authenticate_cognito.value, "user_pool_domain", null)
+      type = lookup(action.value, "type", null)
+
+      dynamic "authenticate_cognito" {
+        for_each = length(keys(lookup(action.value, "authenticate_cognito", {}))) > 0 ? [lookup(action.value, "authenticate_cognito", {})] : []
+
+        content {
+          user_pool_arn       = lookup(authenticate_cognito.value, "user_pool_arn", null)
+          user_pool_client_id = lookup(authenticate_cognito.value, "user_pool_client_id", null)
+          user_pool_domain    = lookup(authenticate_cognito.value, "user_pool_domain", null)
+        }
       }
     }
   }

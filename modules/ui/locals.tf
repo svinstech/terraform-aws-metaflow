@@ -38,7 +38,7 @@ locals {
     var.ui_backend_container_image
   )
 
-  authenticate_cognito = var.authenticate_with_cognito ? [
+  default_actions = var.authenticate_with_cognito ? [
     {
       type             = "authenticate-cognito"
       target_group_arn = null
