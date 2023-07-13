@@ -128,3 +128,8 @@ output "batch_compute_environment_security_group_id" {
   value       = module.metaflow-computation.batch_compute_environment_security_group_id
   description = "The ID of the security group attached to the Batch Compute environment."
 }
+
+output "metadata_service_security_group_id" {
+  value       = module.metaflow-metadata-service.batch_compute_environment_security_group_id
+  description = "The ID of the security group attached to the Metadata Service."
+}
