@@ -89,12 +89,11 @@ module "metaflow-computation" {
   compute_environment_egress_cidr_blocks      = var.compute_environment_egress_cidr_blocks
   iam_partition                               = var.iam_partition
   metaflow_vpc_id                             = var.vpc_id
-  subnet1_id                                  = var.subnet1_id
-  subnet2_id                                  = var.subnet2_id
+  subnet1_id                                  = var.computation_subnet1_id == "" ? var.subnet1_id : var.computation_subnet1_id
+  subnet2_id                                  = var.computation_subnet2_id == "" ? var.subnet2_id : var.computation_subnet2_id
   launch_template_http_endpoint               = var.launch_template_http_endpoint
   launch_template_http_tokens                 = var.launch_template_http_tokens
   launch_template_http_put_response_hop_limit = var.launch_template_http_put_response_hop_limit
-  with_public_ip                              = var.with_public_ip
 
   standard_tags = var.tags
 }

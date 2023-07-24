@@ -132,6 +132,18 @@ variable "subnet2_id" {
   description = "Second subnet used for availability zone redundancy"
 }
 
+variable "computation_subnet1_id" {
+  type        = string
+  description = "First computation subnet used for availability zone redundancy"
+  default     = ""
+}
+
+variable "computation_subnet2_id" {
+  type        = string
+  description = "Second computation subnet used for availability zone redundancy"
+  default     = ""
+}
+
 variable "vpc_cidr_blocks" {
   type        = list(string)
   description = "The VPC CIDR blocks that we'll access list on our Metadata Service API to allow all internal communications"
