@@ -18,6 +18,10 @@ resource "aws_launch_template" "cpu" {
   # Null image_id allows AWS Batch to decide.
   image_id = var.launch_template_image_id
 
+  network_interfaces {
+    associate_public_ip_address = var.with_public_ip
+  }
+
   block_device_mappings {
     device_name = "/dev/xvda"
 

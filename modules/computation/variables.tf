@@ -102,3 +102,9 @@ variable "launch_template_image_id" {
   nullable    = true
   default     = null
 }
+
+variable "with_public_ip" {
+  type        = bool
+  default     = false
+  description = "Enable public IP assignment for ec2 instances. Typically you want this to be set to true if using public subnets as subnet1_id and subnet2_id, and false otherwise"
+}

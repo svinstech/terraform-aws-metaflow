@@ -94,6 +94,7 @@ module "metaflow-computation" {
   launch_template_http_endpoint               = var.launch_template_http_endpoint
   launch_template_http_tokens                 = var.launch_template_http_tokens
   launch_template_http_put_response_hop_limit = var.launch_template_http_put_response_hop_limit
+  with_public_ip                              = var.with_public_ip
 
   standard_tags = var.tags
 }
