@@ -22,6 +22,10 @@ resource "aws_launch_template" "cpu" {
     associate_public_ip_address = var.with_public_ip
   }
 
+  vpc_security_group_ids = concat([
+    aws_security_group.this.id,
+  ], var.compute_environment_additional_security_group_ids)
+
   block_device_mappings {
     device_name = "/dev/xvda"
 
