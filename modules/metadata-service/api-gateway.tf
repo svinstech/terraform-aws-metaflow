@@ -164,6 +164,11 @@ resource "aws_api_gateway_stage" "this" {
   rest_api_id   = aws_api_gateway_rest_api.this[0].id
   stage_name    = local.api_gateway_stage_name
 
+  access_log_settings {
+    destination_arn = aws_cloudwatch_log_group.this.arn
+    format          = "$context.identity.sourceIp - - [$context.requestTime] \"$context.httpMethod $context.resourcePath $context.protocol\" $context.status $context.responseLength $context.requestId"
+  }
+
   tags = var.standard_tags
 }
 
