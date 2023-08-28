@@ -197,3 +197,7 @@ resource "aws_api_gateway_usage_plan_key" "this" {
   key_type      = "API_KEY"
   usage_plan_id = aws_api_gateway_usage_plan.this[0].id
 }
+
+resource "aws_api_gateway_account" "this" {
+  cloudwatch_role_arn = aws_iam_role.api_gateway_cloudwatch_logs.arn
+}

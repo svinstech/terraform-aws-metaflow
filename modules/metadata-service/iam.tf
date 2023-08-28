@@ -99,3 +99,44 @@ resource "aws_iam_role_policy" "grant_deny_presigned_batch" {
   role   = aws_iam_role.metadata_svc_ecs_task_role.name
   policy = data.aws_iam_policy_document.deny_presigned_batch.json
 }
+
+resource "aws_iam_role" "api_gateway_cloudwatch_logs" {
+  name = "APIGatewayCloudWatchLogs"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = "sts:AssumeRole",
+        Principal = {
+          Service = "apigateway.amazonaws.com"
+        },
+        Effect = "Allow"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy" "api_gateway_cloudwatch_logs" {
+  name = "APIGatewayCloudWatchLogsPolicy"
+  role = aws_iam_role.api_gateway_cloudwatch_logs.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:DescribeLogGroups",
+          "logs:DescribeLogStreams",
+          "logs:PutLogEvents",
+          "logs:GetLogEvents",
+          "logs:FilterLogEvents"
+        ],
+        Resource = "*",
+        Effect   = "Allow"
+      }
+    ]
+  })
+}
