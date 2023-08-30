@@ -201,3 +201,12 @@ resource "aws_api_gateway_usage_plan_key" "this" {
 resource "aws_api_gateway_account" "this" {
   cloudwatch_role_arn = aws_iam_role.api_gateway_cloudwatch_logs.arn
 }
+
+resource "aws_api_gateway_method_settings" "this" {
+  rest_api_id = aws_api_gateway_rest_api.this[0].id
+  stage_name  = aws_api_gateway_stage.this[0].stage_name
+  method_path = "*/*"
+  settings {
+    logging_level = "INFO"
+  }
+}
