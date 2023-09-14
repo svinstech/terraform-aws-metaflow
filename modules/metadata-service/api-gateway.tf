@@ -207,6 +207,6 @@ resource "aws_api_gateway_method_settings" "this" {
   stage_name  = aws_api_gateway_stage.this[0].stage_name
   method_path = "*/*"
   settings {
-    logging_level = "INFO"
+    logging_level = "ERROR"
   }
 }
