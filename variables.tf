@@ -204,3 +204,13 @@ variable "cognito" {
     user_pool_domain    = ""
   }
 }
+
+variable "db_instance_type" {
+  type    = string
+  default = "db.t2.small"
+}
+
+variable "db_engine_version" {
+  type    = string
+  default = "11"
+}

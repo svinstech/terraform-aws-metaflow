@@ -3,6 +3,9 @@ module "metaflow-datastore" {
 
   force_destroy_s3_bucket = var.force_destroy_s3_bucket
 
+  db_instance_type  = var.db_instance_type
+  db_engine_version = var.db_engine_version
+
   resource_prefix = local.resource_prefix
   resource_suffix = local.resource_suffix
 
