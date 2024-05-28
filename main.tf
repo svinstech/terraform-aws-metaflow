@@ -2,6 +2,7 @@ module "metaflow-datastore" {
   source = "./modules/datastore"
 
   force_destroy_s3_bucket = var.force_destroy_s3_bucket
+  ca_cert_identifier = var.ca_cert_identifier
 
   db_instance_type  = var.db_instance_type
   db_engine_version = var.db_engine_version
