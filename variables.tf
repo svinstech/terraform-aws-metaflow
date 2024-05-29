@@ -214,3 +214,8 @@ variable "db_engine_version" {
   type    = string
   default = "11"
 }
+
+variable "ca_cert_identifier" {
+  type    = string
+  default = "rds-ca-2019"
+}

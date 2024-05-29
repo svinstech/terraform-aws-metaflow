@@ -65,3 +65,8 @@ variable "subnet2_id" {
   type        = string
   description = "Second subnet used for availability zone redundancy"
 }
+
+variable "ca_cert_identifier" {
+  type    = string
+  default = "rds-ca-2019"
+}
