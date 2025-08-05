@@ -21,7 +21,7 @@ data "aws_availability_zones" "available" {
 # VPC infra using https://github.com/terraform-aws-modules/terraform-aws-vpc
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.13.0"
+  version = "6.0.1"
 
   name = "${local.resource_prefix}-${local.resource_suffix}"
   cidr = "10.10.0.0/16"
@@ -37,8 +37,7 @@ module "vpc" {
 
 
 module "metaflow" {
-  source  = "outerbounds/metaflow/aws"
-  version = "0.9.0"
+  source = "../../"
 
   resource_prefix = local.resource_prefix
   resource_suffix = local.resource_suffix
