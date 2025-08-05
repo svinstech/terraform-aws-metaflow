@@ -9,13 +9,13 @@ resource "aws_api_gateway_rest_api_policy" "this" {
             "Effect": "Allow",
             "Principal": "*",
             "Action": "execute-api:Invoke",
-            "Resource": "arn:${var.iam_partition}:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.this[0].id}/*/*/*"
+            "Resource": "arn:${var.iam_partition}:execute-api:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.this[0].id}/*/*/*"
         },
         {
             "Effect": "Deny",
             "Principal": "*",
             "Action": "execute-api:Invoke",
-            "Resource": "arn:${var.iam_partition}:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.this[0].id}/*/*/*",
+            "Resource": "arn:${var.iam_partition}:execute-api:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.this[0].id}/*/*/*",
             "Condition": {
                 "NotIpAddress": {
                     "aws:SourceIp": ${jsonencode(var.access_list_cidr_blocks)}
