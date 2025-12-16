@@ -22,7 +22,7 @@ resource "helm_release" "cluster_autoscaler" {
 
   set {
     name  = "awsRegion"
-    value = data.aws_region.current.name
+    value = data.aws_region.current.region
   }
 }
 

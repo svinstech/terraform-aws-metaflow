@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "step_functions_batch_policy" {
 
     resources = [
       var.batch_job_queue_arn,
-      "arn:${var.iam_partition}:batch:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:job-definition/*"
+      "arn:${var.iam_partition}:batch:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:job-definition/*"
     ]
   }
 }
@@ -102,7 +102,7 @@ data "aws_iam_policy_document" "step_functions_eventbridge" {
     ]
 
     resources = [
-      "arn:${var.iam_partition}:events:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:rule/StepFunctionsGetEventsForBatchJobsRule",
+      "arn:${var.iam_partition}:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/StepFunctionsGetEventsForBatchJobsRule",
     ]
   }
 
@@ -112,7 +112,7 @@ data "aws_iam_policy_document" "step_functions_eventbridge" {
     ]
 
     resources = [
-      "arn:${var.iam_partition}:events:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:rule/StepFunctionsGetEventsForBatchJobsRule"
+      "arn:${var.iam_partition}:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/StepFunctionsGetEventsForBatchJobsRule"
     ]
 
     condition {

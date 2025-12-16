@@ -27,5 +27,5 @@ locals {
   db_migrate_lambda_name        = "${var.resource_prefix}db_migrate${var.resource_suffix}"
   lambda_ecs_execute_role_name  = "${var.resource_prefix}lambda_ecs_execute${var.resource_suffix}"
 
-  cloudwatch_logs_arn_prefix = "arn:${var.iam_partition}:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}"
+  cloudwatch_logs_arn_prefix = "arn:${var.iam_partition}:logs:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}"
 }

@@ -22,7 +22,7 @@ resource "helm_release" "cluster_autoscaler" {
 
   set {
     name  = "awsRegion"
-    value = data.aws_region.current.name
+    value = data.aws_region.current.region
   }
 }
 
@@ -60,7 +60,7 @@ locals {
       "s3" = {
         "bucket"      = module.metaflow-datastore.s3_bucket_name
         "keyFormat"   = "argo-artifacts/{{workflow.creationTimestamp.Y}}/{{workflow.creationTimestamp.m}}/{{workflow.creationTimestamp.d}}/{{workflow.name}}/{{pod.name}}"
-        "region"      = data.aws_region.current.name
+        "region"      = data.aws_region.current.region
         "endpoint"    = "s3.amazonaws.com"
         "useSDKCreds" = true
         "insecure"    = false

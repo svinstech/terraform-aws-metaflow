@@ -13,7 +13,7 @@ locals {
   ui_backend_security_group_name = "${var.resource_prefix}ui-backend-sg${var.resource_suffix}"
   alb_security_group_name        = "${var.resource_prefix}alb-sg${var.resource_suffix}"
 
-  cloudwatch_logs_arn_prefix = "arn:${var.iam_partition}:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}"
+  cloudwatch_logs_arn_prefix = "arn:${var.iam_partition}:logs:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}"
 
   default_ui_backend_env_vars = {
     "MF_METADATA_DB_HOST"           = "${replace(var.rds_master_instance_endpoint, ":5432", "")}"

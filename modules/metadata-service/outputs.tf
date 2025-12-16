@@ -4,7 +4,7 @@ output "METAFLOW_SERVICE_INTERNAL_URL" {
 }
 
 output "METAFLOW_SERVICE_URL" {
-  value       = var.enable_api_gateway ? "https://${aws_api_gateway_rest_api.this[0].id}.execute-api.${data.aws_region.current.name}.amazonaws.com/api/" : ""
+  value       = var.enable_api_gateway ? "https://${aws_api_gateway_rest_api.this[0].id}.execute-api.${data.aws_region.current.region}.amazonaws.com/api/" : ""
   description = "URL for Metadata Service (Open to Public Access)"
 }
 
