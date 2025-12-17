@@ -2,7 +2,7 @@ module "metaflow-datastore" {
   source = "./modules/datastore"
 
   force_destroy_s3_bucket = var.force_destroy_s3_bucket
-  ca_cert_identifier = var.ca_cert_identifier
+  ca_cert_identifier      = var.ca_cert_identifier
 
   db_instance_type  = var.db_instance_type
   db_engine_version = var.db_engine_version
@@ -47,7 +47,7 @@ module "metaflow-metadata-service" {
 
 module "metaflow-ui" {
   source = "./modules/ui"
-  count  = var.ui_certificate_arn ? 1 : 0
+  count  = var.ui_certificate_arn != null ? 1 : 0
 
   resource_prefix = local.resource_prefix
   resource_suffix = local.resource_suffix
